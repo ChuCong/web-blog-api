@@ -64,3 +64,11 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+
+# Chạy scheduleNotifications mỗi giờ
+0 * * * * cd /var/www/msd/msd-api && php artisan notifications:schedule >> /var/www/msd/msd-api/storage/logs/notifications_schedule.log 2>&1
+
+# Chạy processRedisNotifications mỗi phút
+* * * * * cd /var/www/msd/msd-api && php artisan notifications:process-redis >> /var/www/msd/msd-api/storage/logs/notifications_process_redis.log 2>&1

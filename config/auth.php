@@ -1,5 +1,7 @@
 <?php
 
+use App\Core\AppConst;
+
 return [
 
     /*
@@ -40,6 +42,18 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        // Guard cho admin (trùng với guard_name = "admin" trong DB)
+        'admin' => [
+            'driver' => 'sanctum', // Hoặc 'session' nếu dùng web login
+            'provider' => 'admins',
+        ],
+
+        // Guard sanctum client (nếu bạn dùng cho user thường)
+        'sanctum_client' => [
+            'driver'   => 'sanctum',
+            'provider' => 'users',
+        ],
     ],
 
     /*
@@ -64,7 +78,10 @@ return [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
-
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
