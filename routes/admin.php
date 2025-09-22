@@ -10,6 +10,8 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\CategoryController;
 
 Route::middleware('web') // hoặc thêm 'auth' nếu cần
     ->prefix('admin')
@@ -27,8 +29,10 @@ Route::middleware('web') // hoặc thêm 'auth' nếu cần
             Route::post('upload-media', [MediaController::class, 'upload']);
             Route::resource('user', UserController::class);
             Route::post('/image/upload', [ImageController::class, 'uploadImage']);
-
+            Route::resource('articles', ArticleController::class);
+            Route::post('articles/upload-image', [ArticleController::class, 'uploadImage']);
+            Route::post('categories/upload-image', [CategoryController::class, 'uploadImage']);
+            Route::resource('categories', CategoryController::class);
         });
         Route::post('/change-password', [AdminController::class, 'changePassword']);
-       
     });

@@ -19,11 +19,11 @@ class AdminController extends Controller
     public function __construct(AdminService $service)
     {
         $this->service = $service;
-        $this->middleware('permission:create_user')->only('store');
-        $this->middleware('permission:update_user')->only('update');
-        $this->middleware('permission:delete_user')->only('destroy');
-        $this->middleware('permission:view_user')->only('show');
-        $this->middleware('permission:list_user')->only(['index', 'search']);
+        // $this->middleware('permission:create_user')->only('store');
+        // $this->middleware('permission:update_user')->only('update');
+        // $this->middleware('permission:delete_user')->only('destroy');
+        // $this->middleware('permission:view_user')->only('show');
+        // $this->middleware('permission:list_user')->only(['index', 'search']);
     }
 
     /**
@@ -140,9 +140,9 @@ class AdminController extends Controller
         try {
             $user = $request->user();
             $user->listPermission = $user->getAllPermissions()->pluck('group');
-            if ($teacher = $user->getTeacherIfExists()) {
-                $user->teacher = $teacher;
-            }
+            // if ($teacher = $user->getTeacherIfExists()) {
+            //     $user->teacher = $teacher;
+            // }
             return CommonUtility::getSuccessResponse($user, "Get user success");
         } catch (Exception $e) {
             Log::error($e->getMessage());

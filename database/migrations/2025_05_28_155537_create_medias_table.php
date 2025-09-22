@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('alt')->nullable();
             $table->string('src')->nullable();
             $table->tinyInteger('type')->nullable();
-            $table->string('s3_url', 500)->nullable();
             $table->timestamps();
         });
     }
