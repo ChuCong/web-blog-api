@@ -33,3 +33,4 @@ Route::get('/category', [CategoryController::class, 'getList']);
 Route::get('/category/{slug}', [CategoryController::class, 'getBySlug']);
 Route::get('/articles', [ArticleController::class, 'getList']);
 Route::get('/articles/{slug}', [ArticleController::class, 'getBySlug']);
+Route::get('/articles/category/{slug}', [ArticleController::class, 'getByCategoryId']);

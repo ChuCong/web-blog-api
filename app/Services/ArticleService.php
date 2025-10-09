@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Services;
+
 use App\Repositories\ArticleRepository;
 // use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\Storage;
@@ -35,7 +36,7 @@ class ArticleService
         $page = $page ?? 1;
         return $this->articleRepository->getListArticleApi($limit, $page);
     }
-    
+
     public function create(array $data)
     {
         return $this->articleRepository->create($data);
@@ -59,5 +60,13 @@ class ArticleService
     public function getBySlug($slug)
     {
         return $this->articleRepository->getBySlug($slug);
+    }
+    public function getByCategoryId($slug)
+    {
+        $article = $this->articleRepository->getBySlug($slug);
+        if ($article !== null) {
+            return $this->articleRepository->getByCategoryId($article->category_id);
+        }
+        return [];
     }
 }

@@ -67,7 +67,15 @@ class ArticleRepository extends BaseRepository
 
     public function getBySlug($slug)
     {
-        $query = $this->getQueryBuilder()->where('slug', $slug)->with('media, category');
+        $query = $this->getQueryBuilder()->where('slug', $slug)->with('category');
         return $query->first();
+    }
+
+    public function getByCategoryId($categoryId)
+    {
+        $query = $this->getQueryBuilder()
+            ->where('category_id', $categoryId)
+            ->where('active', 1);
+        return $query->get();
     }
 }

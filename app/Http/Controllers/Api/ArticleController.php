@@ -15,12 +15,11 @@ class ArticleController extends Controller
 
     public function __construct(
         ArticleService $articleService,
-    )
-    {
+    ) {
         $this->articleService = $articleService;
     }
 
-    public function getList (Request $request)
+    public function getList(Request $request)
     {
         try {
             $limit = $request->input('limit', 10);
@@ -39,6 +38,15 @@ class ArticleController extends Controller
         } catch (Exception $e) {
             Log::error($e->getMessage());
             return CommonUtility::getErrorResponse("Get detail fail");
+        }
+    }
+    public function getByCategoryId($slug)
+    {
+        try {
+            return CommonUtility::getSuccessResponse($this->articleService->getByCategoryId($slug), "success");
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return CommonUtility::getErrorResponse("Get list by category fail");
         }
     }
 }

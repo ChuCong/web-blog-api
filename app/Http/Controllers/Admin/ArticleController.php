@@ -84,7 +84,7 @@ class ArticleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(ArticleFormRequest $request, $id)
     {
         try {
             $data = $request->validated();
